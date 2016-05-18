@@ -2,4 +2,4 @@ language: c
 os:
   - osx
 install:
-  - ./fresh-install.sh
+  - make fresh-install
