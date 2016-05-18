@@ -6,8 +6,6 @@ export DOTFILES_DIR ZSH
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ZSH="$HOME/.dotfiles/oh-my-zsh"
 
-sudo -v
-
 # Pulling itself
 [ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
 
