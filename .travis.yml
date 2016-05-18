@@ -3,5 +3,4 @@ os:
   - osx
 osx_image: xcode7.3
 install:
-  - sudo -v
   - travis_wait make fresh-install
