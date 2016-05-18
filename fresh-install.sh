@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo -v
+
 # Update & Install XCode
 sudo softwareupdate -i -a
 
