@@ -1,0 +1,204 @@
+" configure vim
+set nu
+set autoindent
+set smartindent
+set showcmd
+set showmatch
+set showmode
+set ruler
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+set hlsearch            " Highlight search results.
+set ignorecase          " Make searching case insensitive
+set smartcase           " ... unless the query has capital letters.
+set incsearch           " Incremental search.
+set gdefault            " Use 'g' flag by default with :s/foo/bar/.
+set magic               " Use 'magic' patterns (extended regular expressions).
+
+set cursorline
+
+set spelllang=en
+set completeopt+=noinsert
+set clipboard=unnamed
+
+syntax on
+filetype plugin on
+
+" configure vimtex
+let g:vimtex_enabled = 1
+let g:vimtex_complete_close_braces = 1
+let g:vimtex_complete_recursive_bib = 1
+let g:vimtex_complete_img_use_tail = 1
+let g:vimtex_fold_enabled = 1
+" let g:vimtex_view_method = ''
+let g:vimtex_latexmk_progname = '~/.clones/neovim-remote/bin/nvr'
+let g:vimtex_latexmk_build_dir = 'tmp'
+
+" configure fakeclip
+let g:vim_fakeclip_tmux_plus = 1 
+
+" configure syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" configure markdown
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_folding_disabled = 1
+
+" configure molokai colors
+let g:molokai_original = 1
+let g:rehash256 = 1
+
+" configure python path
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+" plugins
+call plug#begin('~/.vim/plugged')
+Plug 'digitaltoad/vim-pug'
+Plug 'cazador481/fakeclip.neovim'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
+Plug 'lervag/vimtex'
+Plug 'plasticboy/vim-markdown'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'scrooloose/syntastic'
+Plug 'solarnz/thrift.vim'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neopairs.vim'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+
+call plug#end()
+
+" nvim configuration
+let mapleader      = ' '
+let maplocalleader = '\\'
+
+let g:UltiSnipsExpandTrigger="<c-e>"
+
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+
+" relative numbering
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set number
+  else
+    set rnu
+  endif
+endfunc
+
+" Toggle between normal and relative numbering.
+nnoremap <leader>r :call NumberToggle()<cr>
+nnoremap <F9> za
+" Open file menu
+nnoremap <Leader>o :CtrlP<CR>
+" Open buffer menu
+nnoremap <Leader>b :CtrlPBuffer<CR>
+" Open most recently used files
+nnoremap <Leader>f :CtrlPMRUFiles<CR>
+
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-[> <C-\><C-n>
+
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = '|'
+let g:airline_theme= 'serene'
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" Colors {{{
+function! VimrcLoadColors()
+  set background=dark
+  if $TERM =~ 'screen-256color' || $TERM =~ 'rxvt-unicode-256color' || $TERM =~ 'xterm-256color'
+    colorscheme molokai
+    " for tmux, this will only work if the client terminal supports italic
+    " escape sequences
+    highlight Comment cterm=italic
+  endif
+  highlight ColorColumn ctermbg=235 guibg=#2c2d27
+  let &colorcolumn=join(range(81,999),",")
+endfunction
+" }}}
+" Terminal {{{
+if has('nvim')
+  augroup Terminal
+    au!
+    au TermOpen * let g:last_terminal_job_id = b:terminal_job_id
+    au WinEnter term://* startinsert
+  augroup END
+endif
+let g:terminal_color_0  = '#2e3436'
+let g:terminal_color_1  = '#cc0000'
+let g:terminal_color_2  = '#4e9a06'
+let g:terminal_color_3  = '#c4a000'
+let g:terminal_color_4  = '#3465a4'
+let g:terminal_color_5  = '#75507b'
+let g:terminal_color_6  = '#0b939b'
+let g:terminal_color_7  = '#d3d7cf'
+let g:terminal_color_8  = '#555753'
+let g:terminal_color_9  = '#ef2929'
+let g:terminal_color_10 = '#8ae234'
+let g:terminal_color_11 = '#fce94f'
+let g:terminal_color_12 = '#729fcf'
+let g:terminal_color_13 = '#ad7fa8'
+let g:terminal_color_14 = '#00f5e9'
+let g:terminal_color_15 = '#eeeeec'
+" }}}
+
+call VimrcLoadColors()
+
+inoremap <c-x><c-k> <c-x><c-k>
+
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal g`\"" |
+      \ endif
+

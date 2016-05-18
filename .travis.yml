@@ -1,0 +1,5 @@
+language: c
+os:
+  - osx
+install:
+  - ./fresh-install.sh

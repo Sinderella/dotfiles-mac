@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+alias cpu='sysctl -n machdep.cpu.brand_string'
+alias uall='. ../update.sh'
+
+# Local config
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
+
