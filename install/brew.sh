@@ -52,3 +52,6 @@ apps=(
 
 brew install "${apps[@]}"
 
+# Link app
+brew linkapps python # link IDLE from python2, change to python3 if preferred
+
