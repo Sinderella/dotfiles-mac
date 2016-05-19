@@ -2,6 +2,7 @@
 
 alias cpu='sysctl -n machdep.cpu.brand_string'
 alias uall='. ../update.sh'
+alias e=nvim
 
 # Local config
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

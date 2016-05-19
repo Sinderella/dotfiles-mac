@@ -6,12 +6,12 @@ brew update
 brew upgrade
 
 apps=(
-  findutils --default-names
-  gnu-sed --default-names
-  gnu-tar --default-names
-  gnu-which --default-names
-  gnutls --default-names
-  grep --default-names
+  findutils --with-default-names
+  gnu-sed --with-default-names
+  gnu-tar --with-default-names
+  gnu-which --with-default-names
+  gnutls --with-default-names
+  grep --with-default-names
   # General
   binutils
   cmake
