@@ -4,7 +4,7 @@
 set -e
 
 plist="com.googlecode.iterm2.plist"
-new_plist="./../cfg/iterm2/$plist"
+new_plist="$DOTFILES_DIR/cfg/iterm2/$plist"
 installed_plist="$HOME/Library/Preferences/$plist"
 
 log()   { printf -- "-----> $*\n" ; return $? ; }
