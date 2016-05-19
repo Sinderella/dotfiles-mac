@@ -8,4 +8,4 @@ cache:
     - $HOME/Library/Caches/Homebrew
     - /Library/Caches/Homebrew
 install:
-  - ./install.sh
+  - sh install.sh

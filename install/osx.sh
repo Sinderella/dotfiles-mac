@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # https://github.com/webpro/dotfiles/blob/master/osx/defaults.sh
 

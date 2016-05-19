@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # https://raw.githubusercontent.com/fnichol/macosx-iterm2-settings/master/contrib/install-settings.sh
 
 set -e

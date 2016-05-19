@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 brew tap caskroom/cask
 brew tap caskroom/versions

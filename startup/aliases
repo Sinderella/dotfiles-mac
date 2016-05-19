@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 alias cpu='sysctl -n machdep.cpu.brand_string'
 alias uall='. ../update.sh'
