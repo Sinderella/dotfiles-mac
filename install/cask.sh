@@ -29,7 +29,7 @@ apps=(
   glimmerblocker
   google-chrome
   hammerspoon
-  iterm
+  iterm2
   skype
   slack
   sublime-text3
