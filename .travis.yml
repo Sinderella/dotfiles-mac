@@ -7,5 +7,6 @@ cache:
   directories:
     - $HOME/Library/Caches/Homebrew
     - /Library/Caches/Homebrew
+  timeout: 1000
 install:
   - sh install.sh
